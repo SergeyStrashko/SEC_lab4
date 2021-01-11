@@ -68,7 +68,7 @@ namespace lab4
             string hashedPassword = PasswordHasher.GetHash(specialSymbols);
 
             BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
-            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
+            Assert.Equal(hashedPassword, BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace lab4
             string hashedPassword = PasswordHasher.GetHash(password, specialSymbols);
 
             BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
-            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
+            Assert.Equal(hashedPassword, BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
         private string generateLongString(int length)
@@ -106,7 +106,7 @@ namespace lab4
             string hashedPassword = PasswordHasher.GetHash(pass);
 
             BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
-            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
+            Assert.Equal(hashedPassword, BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
       
@@ -122,7 +122,7 @@ namespace lab4
             string hashedPassword = PasswordHasher.GetHash(password, salt);
 
             BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
-            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
+            Assert.Equal(hashedPassword, BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
         [Theory]
@@ -136,7 +136,7 @@ namespace lab4
             string hashedPassword = PasswordHasher.GetHash(password, salt, (uint)value);
 
             BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
-            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
+            Assert.Equal(hashedPassword, BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
         [Fact]
