@@ -75,8 +75,11 @@ namespace lab4
         public void Test_SaltSpesialSymbolsTest()
         {
             string specialSymbols = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+            
+            string hashedPassword = PasswordHasher.GetHash(password, specialSymbols);
 
-            Assert.NotNull(PasswordHasher.GetHash(password, specialSymbols));
+            BaseFileWorker.Write(hashedPassword, path + "\\" + "hashedPassword.txt");
+            Assert.NotNull(BaseFileWorker.ReadAll(path + "\\" + "hashedPassword.txt"));
         }
 
         private string generateLongString(int length)
@@ -263,8 +266,8 @@ namespace lab4
         [Theory]
         [InlineData("T", true)]
         [InlineData("F", false)]
-        [InlineData("‘ or 1=1;–", false)]
-        [InlineData("‘ or 1=1; drop table flags; —", false)]
+        [InlineData("Â‘ or 1=1;Â–", false)]
+        [InlineData("Â‘ or 1=1; drop table flags; Â—", false)]
         [InlineData("2333", false)]
         [InlineData("wdadwa dawdaw", false)]
         [InlineData("!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~", false)]
